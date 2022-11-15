@@ -5,8 +5,9 @@ from kivy.properties import (
 )
 from kivy.vector import Vector
 from kivy.clock import Clock
-
+from kivy.core.window import Window
 class PongPaddle(Widget):
+
     score = NumericProperty(0)
 
     def bounce_ball(self, ball):
@@ -33,6 +34,7 @@ class PongGame(Widget):
     ball = ObjectProperty(None)
     player1 = ObjectProperty(None)
     player2 = ObjectProperty(None)
+    
 
     def serve_ball(self, vel = (4,0)):
         self.ball.center = self.center
@@ -59,9 +61,9 @@ class PongGame(Widget):
             self.serve_ball(vel=(-4,0))
     
     def on_touch_move(self, touch):
-        if touch.x < self.width/3:
+        if touch.x < self.width/2:
             self.player1.center_y = touch.y
-        if touch.x > self.width/3:
+        if touch.x > self.width/2:
             self.player2.center_y = touch.y
 
 class PongApp(App):
